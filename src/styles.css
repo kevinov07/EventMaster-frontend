@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+html, body {
+  height: 100%;
+
+}
+.wrapper {
+  /* margin-top: 80px;
+  margin-bottom: 80px; */
+  background-color: purple;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+
+.body {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
