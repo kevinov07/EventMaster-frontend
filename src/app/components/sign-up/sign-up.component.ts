@@ -17,7 +17,7 @@ export class SignUpComponent {
 
   signUpForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20) ]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d).+$/)]),
+    password: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
     confirmPassword: new FormControl('', [Validators.required])
   });
 
@@ -27,10 +27,6 @@ export class SignUpComponent {
 
   signupValidator(field: string) {
     const control = this.signUpForm.get(field);
-
-    if(field === 'confirmPassword' && this.signUpForm.value.password !== this.signUpForm.value.confirmPassword) {
-      return true;
-    }
 
     return !control?.valid && !control?.pristine 
   }

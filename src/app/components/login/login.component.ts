@@ -1,30 +1,55 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { User } from '../../interfaces/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  username = new FormControl('');
-  password = new FormControl('');
+  userService: UserService = inject(UserService);
+
   constructor() { }
 
-  updateUsername(event: any) {
-    this.username.setValue(event.target.value);
-  }
+  loginForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  })
 
-  updatePassword(event: any) {
-    this.password.setValue(event.target.value);
+
+  loginValidator(field: string) {
+    const control = this.loginForm.get(field);
+
+    return !control?.valid && !control?.pristine;
   }
+  // updateUsername(event: any) {
+  //   this.username.setValue(event.target.value);
+  // }
+
+  // updatePassword(event: any) {
+  //   this.password.setValue(event.target.value);
+  // }
 
   login() {
-    console.log('Logging in with username:', this.username.value, 'and password:', this
-    .password.value);
+    // if (this.loginForm.value.password !== this.loginForm.value.confirmPassword) {
+    //   alert('Passwords do not match');
+    //   return;
+    // }
+
+    const user: User = {
+      username: this.loginForm.value.username ?? '',
+      password: this.loginForm.value.password ?? ''
+    }
+
+    //this.userService.login(user)
+    // console.log('Logging in with username:', this.username.value, 'and password:', this
+    // .password.value);
     
   }
 

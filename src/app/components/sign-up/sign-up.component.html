@@ -11,14 +11,14 @@
             Por favor ingrese un nombre de usuario
           </span>
           <span *ngIf="signUpForm.get('username')?.errors?.['minlength']">
-            El nombre de usuario debe tener al menos 4 caracteres
+            El usuario debe tener al menos 4 caracteres
           </span>
           <span *ngIf="signUpForm.get('username')?.errors?.['maxlength']">
             El usuario debe tener maximo 20 caracteres
           </span>
           
         </div>
-        {{signUpForm.get('username')?.errors | json}}
+        <!-- {{signUpForm.get('username')?.errors | json}} -->
       </div>
       <div class="form-floating mb-3">
         <input type="password" class="form-control" placeholder="Ingrese Contraseña" formControlName="password">
@@ -26,9 +26,6 @@
         <div class="alert alert-danger mt-2 " [hidden]="!signupValidator('password')">
           <span *ngIf="signUpForm.get('password')?.errors?.['required']">
             Por favor ingrese una contraseña
-          </span>
-          <span *ngIf="signUpForm.get('password')?.errors?.['minlength']">
-            
           </span>
           <span *ngIf="signUpForm.get('password')?.errors?.['pattern']">
             La contraseña debe tener al menos 8 caracteres, una letra y un numero
