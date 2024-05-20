@@ -44,7 +44,8 @@ export class LoginComponent {
 
     const user: User = {
       username: this.loginForm.value.username ?? '',
-      password: this.loginForm.value.password ?? ''
+      password: this.loginForm.value.password ?? '',
+      email: ''
     }
 
     //this.userService.login(user)

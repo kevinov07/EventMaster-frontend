@@ -17,6 +17,7 @@ export class SignUpComponent {
 
   signUpForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20) ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
     confirmPassword: new FormControl('', [Validators.required])
   });
@@ -39,7 +40,8 @@ export class SignUpComponent {
 
     const user: User = {
       username: this.signUpForm.value.username ?? '',
-      password: this.signUpForm.value.password ?? ''
+      password: this.signUpForm.value.password ?? '',
+      email: this.signUpForm.value.email ?? ''
     }
 
     this.userService.signUp(user)
