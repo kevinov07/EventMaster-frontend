@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignUpComponent {
   userService: UserService = inject(UserService);
+  router: Router = inject(Router);
 
   signUpForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20) ]),
@@ -22,9 +23,7 @@ export class SignUpComponent {
     confirmPassword: new FormControl('', [Validators.required])
   });
 
-  constructor() { 
-
-  }
+  constructor() {}
 
   signupValidator(field: string) {
     const control = this.signUpForm.get(field);
@@ -45,12 +44,16 @@ export class SignUpComponent {
     }
 
     this.userService.signUp(user)
-    // .subscribe((response) => {
-    //   console.log('Signing up with username:', this.signUpForm.value.username, 'and password:', this.signUpForm.value.password);
-    // });
-    // console.log('Signing up with username:', this.signUpForm.value.username , 
-    // 'and password:', this.signUpForm.value.password);
-
+      .subscribe({
+        next: (response) => {
+          console.log('Sign up successful:', response)
+          this.router.navigate(['/login']);
+        },
+        error: (e) => {
+          console.error('Error signing up:', e); 
+          alert('An error occurred while signing up. Please try again.')
+        },
+        complete: () => console.log('Sign up complete')
+    });
   }
-
 }
