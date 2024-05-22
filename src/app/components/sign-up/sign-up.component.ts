@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -53,9 +54,11 @@ export class SignUpComponent {
           this.toastr.success('Sign up successful. Please log in.', 'Success!');
           this.router.navigate(['/login']);
         },
-        error: (e) => {
+        error: (e: HttpErrorResponse) => {
           console.error('Error signing up:', e); 
-          this.toastr.error('An error occurred while signing up. Please try again.', 'Error');
+          e.error.message
+            ? this.toastr.error(e.error.message, 'Error') 
+            : this.toastr.error('An error occurred while signing up. Please try again.', 'Error');
         },
         complete: () => console.log('Sign up complete')
     });
