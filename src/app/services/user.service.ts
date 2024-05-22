@@ -27,5 +27,15 @@ export class UserService {
       })
     );
   }
-}
 
+  login(user: User): Observable<string> {
+    console.log('Logging in with username:', user.username, 'and password:', user.password)
+    return this.http.post<string>(`${this.URL}users/login`, user).pipe(
+      catchError((error) => {
+        console.error('Error logging in:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+}

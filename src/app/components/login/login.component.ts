@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,16 @@ import { UserService } from '../../services/user.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  userService: UserService = inject(UserService);
+  loginForm: FormGroup;
 
-  constructor() { }
 
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  })
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService) {
+    this.loginForm = new FormGroup({
+      identifier: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    })
+
+   }
 
 
   loginValidator(field: string) {
@@ -28,29 +31,36 @@ export class LoginComponent {
 
     return !control?.valid && !control?.pristine;
   }
-  // updateUsername(event: any) {
-  //   this.username.setValue(event.target.value);
-  // }
-
-  // updatePassword(event: any) {
-  //   this.password.setValue(event.target.value);
-  // }
 
   login() {
-    // if (this.loginForm.value.password !== this.loginForm.value.confirmPassword) {
-    //   alert('Passwords do not match');
-    //   return;
-    // }
 
-    const user: User = {
-      username: this.loginForm.value.username ?? '',
-      password: this.loginForm.value.password ?? '',
-      email: ''
+    if (this.loginForm.invalid) {
+      this.toastr.error('Please fill out all fields correctly.');
+      console.log('Please fill out all fields correctly.');
+      return;
     }
 
-    //this.userService.login(user)
-    // console.log('Logging in with username:', this.username.value, 'and password:', this
-    // .password.value);
+    const user: User = {
+      username: '',
+      password: this.loginForm.value.password ?? '',
+      email: '',
+      identifier: this.loginForm.value.identifier ?? ''
+    }
+
+    this.userService.login(user)
+      .subscribe({
+        next: (response) => {
+          console.log('Login successful:', response);
+          this.toastr.success('Login successful.', 'Success!');
+          this.router.navigate(['/dashboard']);
+        },
+        error: (e) => {
+          console.error('Error logging in:', e);
+          e.error.message
+            ? this.toastr.error(e.error.message, 'Error')
+            : this.toastr.error('An error occurred. Please try again.', 'Error');
+        }
+      });
     
   }
 
