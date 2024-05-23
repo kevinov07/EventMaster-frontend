@@ -4,10 +4,12 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EventsComponent } from './components/events/events.component';
 
+import { AuthGuard } from './utils/auth.guard';
+
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignUpComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'events' , component: EventsComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
