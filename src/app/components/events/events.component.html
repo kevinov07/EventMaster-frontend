@@ -1,43 +1,45 @@
-<section>
-    <h2>Crear Eventos</h2>
-    <!-- Formulario para crear eventos -->
-    <form>
-      <div class="mb-3">
-        <label for="titulo" class="form-label">Título:</label>
-        <input type="text" class="form-control" id="titulo" name="titulo">
+<app-header class="fixed-top"></app-header>
+
+<section class="container">
+  <h2>Crear Eventos</h2>
+  <!-- Formulario para crear eventos -->
+  <form>
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título:</label>
+      <input type="text" class="form-control" id="titulo" name="titulo">
+    </div>
+    
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col">
+        <label for="fecha" class="form-label">Fecha:</label>
+        <input type="date" class="form-control" id="fecha" name="fecha">
       </div>
-      
-      <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción:</label>
-        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+      <div class="col">
+        <label for="hora" class="form-label">Hora:</label>
+        <input type="time" class="form-control" id="hora" name="hora">
       </div>
-      
-      <div class="row mb-3">
-        <div class="col">
-          <label for="fecha" class="form-label">Fecha:</label>
-          <input type="date" class="form-control" id="fecha" name="fecha">
-        </div>
-        <div class="col">
-          <label for="hora" class="form-label">Hora:</label>
-          <input type="time" class="form-control" id="hora" name="hora">
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <label for="ubicacion" class="form-label">Ubicación:</label>
-        <input type="text" class="form-control" id="ubicacion" name="ubicacion">
-      </div>
-      
-      <div class="mb-3">
-        <label for="categoria" class="form-label">Categoría:</label>
-        <select class="form-select" id="categoria" name="categoria">
-          <option value="concierto">Concierto</option>
-          <option value="feria">Feria</option>
-          <option value="deportivo">Deportivo</option>
-          <!-- Agrega más opciones de categoría según tus necesidades -->
-        </select>
-      </div>
-      
-      <button type="submit" class="btn btn-primary">Crear Evento</button>
-    </form>
-  </section>
+    </div>
+    
+    <div class="mb-3">
+      <label for="ubicacion" class="form-label">Ubicación:</label>
+      <input type="text" class="form-control" id="ubicacion" name="ubicacion">
+    </div>
+    
+    <div class="mb-3">
+      <label for="categoria" class="form-label">Categoría:</label>
+      <select class="form-select" id="categoria" name="categoria">
+        <option value="concierto">Concierto</option>
+        <option value="feria">Feria</option>
+        <option value="deportivo">Deportivo</option>
+        <!-- Agrega más opciones de categoría según tus necesidades -->
+      </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Crear Evento</button>
+  </form>
+</section>

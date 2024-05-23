@@ -3,67 +3,88 @@
     <img class="logo" src="assets/images/login-logo.png" alt="img login"/>
     <h1 class="mb-3 texto-personalizado">Registrarse</h1>
     <form [formGroup]="signUpForm" (submit)="signUp()">
-      <div class="input-group mb-3">
-        <span class="input-group-text">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-          </svg>
-        </span>
-        <div class="form-floating">
-          <input type="text" class="form-control " placeholder="Ingrese Usuario" formControlName="username">
-          <label>Email</label>
-                <!-- {{signUpForm.get('username')?.errors | json}} -->
-        </div>
-      </div>
-      <div class="alert alert-danger mt-3" [hidden]="!signupValidator('username')">
-        <span *ngIf="signUpForm.get('username')?.errors?.['required']">
-          Por favor ingrese un nombre de usuario
-        </span>
-        <span *ngIf="signUpForm.get('username')?.errors?.['minlength']">
-          El usuario debe tener al menos 4 caracteres
-        </span>
-        <span *ngIf="signUpForm.get('username')?.errors?.['maxlength']">
-          El usuario debe tener maximo 20 caracteres
-        </span>
-      </div>
-        <!-- {{signUpForm.get('username')?.errors | json}} -->
-      <div class="input-group mb-3">
-        <span class="input-group-text">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
-            <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2M3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/>
-          </svg>
-          </span>
-          <div class="form-floating">
-            <input type="password" class="form-control" placeholder="Ingrese Contraseña" formControlName="password">
-            <label>Contraseña</label>
-          </div>
-        </div>
-        <div class="alert alert-danger mt-3" [hidden]="!signupValidator('password')">
-          <span *ngIf="signUpForm.get('password')?.errors?.['required']">
-            Por favor ingrese una contraseña
-          </span>
-          <span *ngIf="signUpForm.get('password')?.errors?.['pattern']">
-            La contraseña debe tener al menos 8 caracteres, una letra y un numero
-          </span>
-          <span *ngIf="signUpForm.get('password')?.errors?.['maxlength']">
-            La contraseña debe tener maximo 20 caracteres
-          </span>
-        </div>
+      <div>
         <div class="input-group mb-3">
           <span class="input-group-text">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
             </svg>
           </span>
           <div class="form-floating">
-              <input type="password" class="form-control" placeholder="Ingrese Contraseña" formControlName="password">
-              <label>Repita la contraseña</label>
+            <input type="text" class="form-control " placeholder="Ingrese Nombre" formControlName="username">
+            <label>Nombre de usuario</label>
           </div>
         </div>
-        <div class="alert alert-danger mt-3" [hidden]="!signupValidator('confirmPassword')">
-          Por favor vuelva a ingresar la contraseña
+        <div class="alert alert-danger mt-3" [hidden]="!signupValidator('username')">
+          <span *ngIf="signUpForm.get('username')?.errors?.['required']">
+            Por favor ingrese un nombre de usuario
+          </span>
+          <span *ngIf="signUpForm.get('username')?.errors?.['minlength']">
+            El nombre debe tener al menos 4 caracteres
+          </span>
+          <span *ngIf="signUpForm.get('username')?.errors?.['maxlength']">
+            El nombre debe tener maximo 20 caracteres
+          </span>
         </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+          </svg>
+        </span>
+        <div class="form-floating">
+          <input type="text" class="form-control " placeholder="Ingrese un correo electronico " formControlName="email">
+          <label>Email</label>
+        </div>
+      </div>
+      <div class="alert alert-danger mt-3" [hidden]="!signupValidator('email')">
+        <span *ngIf="signUpForm.get('email')?.errors?.['required']">
+          Por favor ingrese un correo electronico
+        </span>
+        <span *ngIf="signUpForm.get('email')?.errors?.['email']">
+          Por favor ingrese un correo electronico valido
+        </span>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+          <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2M3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/>
+        </svg>
+        </span>
+        <div class="form-floating">
+          <input type="password" class="form-control" placeholder="Ingrese Contraseña" formControlName="password">
+          <label>Contraseña</label>
+        </div>
+      </div>
+      <div class="alert alert-danger mt-3" [hidden]="!signupValidator('password')">
+        <span *ngIf="signUpForm.get('password')?.errors?.['required']">
+          Por favor ingrese una contraseña
+        </span>
+        <span *ngIf="signUpForm.get('password')?.errors?.['pattern']">
+          La contraseña debe tener al menos 8 caracteres, una letra y un numero
+        </span>
+        <span *ngIf="signUpForm.get('password')?.errors?.['maxlength']">
+          La contraseña debe tener maximo 20 caracteres
+        </span>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+          </svg>
+        </span>
+        <div class="form-floating">
+            <input type="password" class="form-control" placeholder="Ingrese Contraseña" formControlName="confirmPassword">
+            <label>Repita la contraseña</label>
+        </div>
+      </div>
+      <div class="alert alert-danger mt-3" [hidden]="!signupValidator('confirmPassword')">
+        <span *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']">
+          Por favor vuelve a ingresar la contraseña
+        </span>
+      </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>
       </div>

@@ -10,14 +10,13 @@
             </svg>
           </span>
           <div class="form-floating">
-            <input type="text" class="form-control " placeholder="Ingrese Usuario" formControlName="username">
+            <input type="text" class="form-control " placeholder="Ingrese Usuario" formControlName="identifier">
             <label>Email</label>
-                  <!-- {{signUpForm.get('username')?.errors | json}} -->
           </div>
       </div>
-      <div class="alert alert-danger mt-3" [hidden]="!loginValidator('username')">
-        <span *ngIf="loginForm.get('username')?.errors?.['required']">
-          Por favor ingrese un nombre de usuario
+      <div class="alert alert-danger mt-3" [hidden]="!loginValidator('identifier')">
+        <span *ngIf="loginForm.get('identifer')?.errors?.['required']">
+          Por favor ingrese un nombre de usuario o email
         </span>
       </div>
       <div class="input-group mb-3">
@@ -41,5 +40,6 @@
       </div>
     </form>
     <p class="mt-3"> ¿No tienes cuenta? <a class="activebutton texto-personalizado" routerLinkActive="active" routerLink="/signUp">Registrarse</a></p>
+    <p class="mt-3"> ¿Olvidaste tu contraseña? <a class="activebutton texto-personalizado" routerLinkActive="active" routerLink="/forgotPassword">Recuperar Contraseña</a></p>
   </div>
 </div>
