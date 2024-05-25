@@ -54,3 +54,16 @@ html, body {
   justify-content: center;
   align-items: center;
 }
+
+/* .carousel-control-prev, .carousel-control-next {
+  background-color: transparent;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: black;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  background-color: black;
+} */

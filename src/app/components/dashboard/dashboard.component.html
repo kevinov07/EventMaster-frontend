@@ -1,9 +1,10 @@
+<!--
 <app-header class="fixed-top"></app-header>
 <div class="container" style="margin-top: 80px;">
-  <!-- Sección para crear eventos -->
+  <!-- Sección para crear eventos  
   <section>
     <h2>Crear Eventos</h2>
-    <!-- Formulario para crear eventos -->
+    <!-- Formulario para crear eventos 
     <form>
       <div class="mb-3">
         <label for="titulo" class="form-label">Título:</label>
@@ -37,7 +38,7 @@
           <option value="concierto">Concierto</option>
           <option value="feria">Feria</option>
           <option value="deportivo">Deportivo</option>
-          <!-- Agrega más opciones de categoría según tus necesidades -->
+          <!-- Agrega más opciones de categoría según tus necesidades 
         </select>
       </div>
       
@@ -45,7 +46,7 @@
     </form>
   </section>
   
-  <!-- Sección para buscar eventos -->
+  <!-- Sección para buscar eventos 
   <section id="buscar-eventos" class="mb-5">
     <h2>Buscar Eventos</h2>
     <form>
@@ -61,7 +62,7 @@
             <option value="concierto">Concierto</option>
             <option value="feria">Feria</option>
             <option value="deportivo">Deportivo</option>
-            <!-- Agrega más opciones de categoría según necesites -->
+            <!-- Agrega más opciones de categoría según necesites 
           </select>
         </div>
       </div>
@@ -80,25 +81,204 @@
   </section>
 
   
-  <!-- Sección para inscribirse a eventos -->
+  <!-- Sección para inscribirse a eventos 
   <section>
     <h2>Inscribirse a Eventos</h2>
-    <!-- Lista de eventos disponibles para inscripción -->
-    <!-- Aquí puedes mostrar una lista de eventos con la opción de inscribirse -->
+    <!-- Lista de eventos disponibles para inscripción 
+    <!-- Aquí puedes mostrar una lista de eventos con la opción de inscribirse 
   </section>
   
-  <!-- Sección para gestionar eventos creados -->
+  <!-- Sección para gestionar eventos creados 
   <section>
     <h2>Gestionar Eventos Creados</h2>
-    <!-- Lista de eventos creados por el usuario con opciones para editar o cancelar -->
-    <!-- Aquí puedes mostrar una lista de eventos creados por el usuario con opciones de edición y cancelación -->
+    <!-- Lista de eventos creados por el usuario con opciones para editar o cancelar 
+    <!-- Aquí puedes mostrar una lista de eventos creados por el usuario con opciones de edición y cancelación 
   </section>
   
-  <!-- Sección para visualizar eventos inscritos -->
+  <!-- Sección para visualizar eventos inscritos 
   <section>
     <h2>Eventos Inscritos</h2>
-    <!-- Lista de eventos a los que el usuario se ha inscrito -->
-    <!-- Aquí puedes mostrar una lista de eventos a los que el usuario se ha inscrito -->
+    <!-- Lista de eventos a los que el usuario se ha inscrito 
+    <!-- Aquí puedes mostrar una lista de eventos a los que el usuario se ha inscrito 
   </section>
   
+</div>
+-->
+
+<!-- <div class="container">
+  <div class="row">
+    @for (event of events; track event.id){
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <img [src]="event.image" class="card-img-top" alt="{{ event.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ event.date | date: 'fullDate'  }}</h6>
+            <p class="card-text">{{ event.venue }}</p>
+            <a href="#" class="btn btn-primary">Learn more</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div> -->
+
+<app-header class="fixed-top"></app-header>
+
+<!-- <div class="container">
+  <div class="carousel">
+    <h1>Dashboard</h1>
+    <div class="carousel-item">
+      @for (event of events; track event.id) {
+        <h1>hola</h1>
+        <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img [src]="event.image" class="card-img-top" alt="{{event.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{event.name}}</h5>
+                  <p class="card-text">{{event.date}}</p>
+                </div>
+              </div>
+            </div>
+        </div>
+      }
+    </div>
+  </div>
+
+</div> -->
+
+<div class="container" style="margin-top: 80px;">
+  <section id="buscar-eventos" class="mb-5 position-relative" style="background-image: url('assets/images/concierto2.jpg'); background-size: cover; background-position: center;">
+    <div class="row justify-content-center align-items-center text-center position-relative" style="height: 500px;">
+      <div class="col-lg-8">
+        <h1 class="text-white mb-4">Encuentra tu siguiente experiencia</h1>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Buscar eventos" aria-label="Buscar eventos" aria-describedby="button-buscar-eventos">
+          <button class="btn btn-primary" type="button" id="button-buscar-eventos">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <div class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        @for (event of events; track event.id) {
+        <h1>hola</h1>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <img [src]="event.image" class="card-img-top" alt="{{event.name}}">
+              <div class="card-body">
+                <h5 class="card-title">{{event.name}}</h5>
+                <p class="card-text">{{event.date}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div> -->
+          <!-- </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselEventosPrincipales" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselEventosPrincipales" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+      </div>
+    </div>
+  </section> -->
+
+  <section id="eventos-principales" class="mb-5">
+    <h2>Eventos Principales</h2>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            @for (event of events; track event.id) {
+              <div class="col-md-4">
+                <div class="card mb-4">
+                  <img [src]="event.image" class="card-img-top" alt="Nombre del evento">
+                  <div class="card-body">
+                    <h5 class="card-title">{{event.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{event.date}}</h6>
+                    <p class="card-text">{{event.venue}}</p>
+                    <a href="#" class="btn btn-primary">Más información</a>
+                  </div>
+                </div>
+              </div>
+          }
+          </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  
+
+  <!-- <div class="container" style="margin-top: 80px;">
+
+    <section id="eventos-principales" class="mb-5">
+      <h2>Eventos Principales</h2>
+      <div id="carouselEventosPrincipales" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          @for (event of events; track event.id) {
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-4">
+                    <img [src]="event.image" class="card-img-top" alt="Nombre del evento">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ event.name }}</h5>
+                      <p class="card-text">{{ event.date }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselEventosPrincipales" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselEventosPrincipales" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </section>
+  </div>
+  
+
+
+  <!--Sección de eventos recomendados -->
+  <section id="eventos-recomendados">
+    <h2>Eventos Recomendados para Ti</h2>
+    <div class="row">
+      @for (event of events; track event.id) {
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img [src]="event.image" class="card-img-top" alt="Nombre del evento">
+            <div class="card-body">
+              <h5 class="card-title">{{event.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{event.date}}</h6>
+              <p class="card-text">{{event.venue}}</p>
+              <a href="#" class="btn btn-primary">Más información</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
 </div>
