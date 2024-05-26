@@ -6,6 +6,7 @@ import { EventsComponent } from './components/events/events.component';
 import { CreateEventComponent} from './components/create-event/create-event.component';
 
 import { AuthGuard } from './utils/auth.guard';
+import { MyEventsComponent } from './components/my-events/my-events.component';
 
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -13,6 +14,7 @@ export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'events', component: EventsComponent, canActivate: [AuthGuard]},
   {path: 'events/create', component: CreateEventComponent, canActivate: [AuthGuard]},
+  {path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
 
