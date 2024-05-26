@@ -49,11 +49,13 @@ export class LoginComponent {
 
     this.userService.login(user)
       .subscribe({
-        next: (token) => {
-          console.log('Login successful:', token);
+        next: (response) => {
+          console.log('Login successful:', response);
           this.toastr.success('Login successful.', 'Success!');
           this.router.navigate(['/dashboard']);
-          localStorage.setItem('token', token);
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
+
         },
         error: (e) => {
           console.error('Error logging in:', e);
