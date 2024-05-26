@@ -1,6 +1,6 @@
 <app-header class="fixed-top"></app-header>
 
-<section class="container mt-5">
+<section class="container" style="margin-top: 80px;">
   <h2>Buscar y Filtrar Eventos</h2>
 
   <!-- Formulario de búsqueda y filtros -->
@@ -10,13 +10,7 @@
         <input type="text" class="form-control" formControlName="title" placeholder="Buscar por título">
       </div>
       <div class="col-md-6">
-        <select class="form-select" formControlName="category">
-          <option value="">Todas las categorías</option>
-          <option value="concierto">Concierto</option>
-          <option value="feria">Feria</option>
-          <option value="deportivo">Deportivo</option>
-          <!-- Agrega más opciones de categoría según tus necesidades -->
-        </select>
+        <input type="text" class="form-control" formControlName="category" placeholder="Buscar por categoría">
       </div>
     </div>
 
@@ -38,15 +32,17 @@
     @if (events.length === 0) {
       <div>No se encontraron eventos.</div>
     }@else {
-      <ul *ngIf="events.length > 0" class="list-group">
-        <li *ngFor="let event of events" class="list-group-item">
-          <h5>{{ event.title }}</h5>
-          <p>{{ event.description }}</p>
-          <p><strong>Fecha:</strong> {{ event.date }}</p>
-          <p><strong>Ubicación:</strong> {{ event.location }}</p>
-          <p><strong>Categoría:</strong> {{ event.category }}</p>
-          <button class="btn btn-primary" (click)="goToEvent(event.id!)">Ver Evento</button>
-        </li>
+      <ul class="list-group">
+        @for (event of events; track event.id) {
+          <li class="list-group-item">
+            <h5>{{ event.title }}</h5>
+            <p>{{ event.description }}</p>
+            <p><strong>Fecha:</strong> {{ event.date }}</p>
+            <p><strong>Ubicación:</strong> {{ event.location }}</p>
+            <p><strong>Categoría:</strong> {{ event.category }}</p>
+            <button class="btn btn-primary" (click)="goToEvent(event.id!)">Ver Evento</button>
+          </li>
+        }
       </ul>
     }
   </div>

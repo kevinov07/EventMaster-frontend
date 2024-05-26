@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { ToastrService } from 'ngx-toastr';
-import { Event } from '../../interfaces/event';
+import { AppEvent } from '../../interfaces/event';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
@@ -16,7 +16,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class EventsComponent implements OnInit {
   searchForm: FormGroup;
-  events: Event[] = [];
+  events: AppEvent[] = [];
 
   constructor(
     private eventService: EventService,
@@ -39,7 +39,7 @@ export class EventsComponent implements OnInit {
     const filters = this.searchForm.value;
 
     this.eventService.searchEvents(filters).subscribe({
-      next: (events: Event[]) => {
+      next: (events: AppEvent[]) => {
         this.events = events;
       },
       error: (err) => {

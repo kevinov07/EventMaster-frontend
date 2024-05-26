@@ -1,0 +1,46 @@
+<app-header class="fixed-top"></app-header>
+
+<section class="container" style="margin-top: 80px;">
+  <h2>Mis Eventos</h2>
+    <div class="mt-4">
+      <h3>Eventos Creados</h3>
+      <div>
+        @if (createdEvents.length === 0) {
+        <div>No has creado ningún evento.</div>
+        }@else {
+        <ul class="list-group">
+            @for (event of createdEvents; track event.id) {
+            <li class="list-group-item">
+                <h5>{{ event.title }}</h5>
+                <p>{{ event.description }}</p>
+                <p><strong>Fecha:</strong> {{ event.date }}</p>
+                <p><strong>Ubicación:</strong> {{ event.location }}</p>
+                <p><strong>Categoría:</strong> {{ event.category }}</p>
+                <button class="btn btn-primary" (click)="goToEvent(event.id!)">Ver Evento</button>
+            </li>
+            }
+        </ul>
+        }
+      </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>Eventos Inscritos</h3>
+        @if (attendingEvents.length === 0) {
+          <div>No estás inscrito en ningún evento.</div>
+        }@else {
+          <ul class="list-group">
+            @for (event of attendingEvents; track event.id) {
+              <li class="list-group-item">
+                <h5>{{ event.title }}</h5>
+                <p>{{ event.description }}</p>
+                <p><strong>Fecha:</strong> {{ event.date }}</p>
+                <p><strong>Ubicación:</strong> {{ event.location }}</p>
+                <p><strong>Categoría:</strong> {{ event.category }}</p>
+                <button class="btn btn-primary" (click)="goToEvent(event.id!)">Ver Evento</button>
+              </li>  
+            }
+          </ul>
+        }
+    </div>
+</section>
