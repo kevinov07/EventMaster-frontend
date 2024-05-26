@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Event } from '../interfaces/event';
+import { AppEvent, EventFilters } from '../interfaces/event';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class EventService {
     this.myAPIUrl = 'event/create'
   }
 
-  createEvent(event: Event): Observable<any> {
+  createEvent(event: AppEvent): Observable<any> {
     console.log('Creating event:', event.title, 'on:', event.date, 'at:', event.location, 'with description:', event.description)
     return this.http.post(`${this.URL}${this.myAPIUrl}`, event).pipe(
       catchError((error) => {
@@ -27,9 +27,9 @@ export class EventService {
     );
   }
 
-  getEventByUser(userId: number): Observable<Event[]> {
+  getEventByUser(userId: number): Observable<AppEvent[]> {
     console.log('Fetching events by user:', userId)
-    return this.http.get<Event[]>(`${this.URL}events/user/${userId}`).pipe(
+    return this.http.get<AppEvent[]>(`${this.URL}event/created/${userId}`).pipe(
       catchError((error) => {
         console.error('Error fetching events:', error);
         return throwError(() => error);
@@ -37,9 +37,22 @@ export class EventService {
     );
   }
 
-  searchEvents(filters: any): Observable<Event[]> {
+  searchEvents(filters?: EventFilters): Observable<AppEvent[]> {
+    let params = new HttpParams();
+
+    // Verifica si el objeto filters está definido y si tiene valores
+    if (filters) {
+      for (const key in filters) {
+
+        const value = filters[key as keyof EventFilters];
+        if (value !== null && value !== undefined && value !== '') {
+          params = params.append(key, value);
+        }
+      }
+    }
+
     console.log('Searching events with filters:', filters)
-    return this.http.get<Event[]>(`${this.URL}events`, { params: filters }).pipe(
+    return this.http.get<AppEvent[]>(`${this.URL}event/get-events`, { params }).pipe(
       catchError((error) => {
         console.error('Error fetching events:', error);
         return throwError(() => error);
