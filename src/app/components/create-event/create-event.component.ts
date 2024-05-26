@@ -7,7 +7,8 @@ import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Event } from '../../interfaces/event';
+import { AppEvent } from '../../interfaces/event';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-create-event',
@@ -18,16 +19,24 @@ import { Event } from '../../interfaces/event';
 })
 export class CreateEventComponent {
   eventsForm: FormGroup;
-  userId: number = 1; // Hardcoded for now
+  userId: number;
 
-  constructor(private eventService: EventService, private router: Router, private toastr: ToastrService) {
+  constructor(
+    private eventService: EventService,
+    private router: Router, 
+    private toastr: ToastrService,
+    private userService: UserService
+  ) {
     this.eventsForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required])
+      category: new FormControl('', [Validators.required]),
+      time: new FormControl('', [Validators.required]),
     });
+
+    this.userId = this.userService.loadUserId();
   }
 
   CreateEvent() {
@@ -36,12 +45,12 @@ export class CreateEventComponent {
       return;
     }
 
-    const event: Event = {
+
+    const event: AppEvent = {
       ...this.eventsForm.value,
-      userId: this.userId
-
+      user_id: this.userId
     }
-
+    console.log(event)
     this.eventService.createEvent(event)
       .subscribe({
         next: (response) => {
