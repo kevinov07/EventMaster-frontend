@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 
-var otpTemp = 8888;
+var otpTemp = -1;
 
 @Component({
   selector: 'app-sign-up',
