@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 
 var otpTemp = -1;
+var sent = false;
 
 @Component({
   selector: 'app-sign-up',
@@ -66,6 +67,7 @@ export class SignUpComponent {
 
     console.log(event.submitter.value);
     if (event.submitter.value === '1'){
+      sent = true;
       this.sendOTP();
       return;
     }
@@ -79,7 +81,7 @@ export class SignUpComponent {
       return;
     }
 
-    if (otpTemp != this.signUpForm.value.code) {
+    if (otpTemp != this.signUpForm.value.code || sent === false) {
       console.log(this.signUpForm.value.code);
       this.toastr.error('OTP es invalido');
       return;
