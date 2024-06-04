@@ -2,7 +2,7 @@
   <div class="body rounded-5 p-4 mb-3">
     <img class="logo" src="assets/images/login-logo.png" alt="img login"/>
     <h1 class="mb-3 texto-personalizado">Registrarse</h1>
-    <form [formGroup]="signUpForm" (submit)="signUp()">
+    <form [formGroup]="signUpForm" (submit)="signUp($event)">
       <div>
         <div class="input-group mb-3">
           <span class="input-group-text">
@@ -38,6 +38,7 @@
           <label>Email</label>
         </div>
       </div>
+      
       <div class="alert alert-danger mt-3" [hidden]="!signupValidator('email')">
         <span *ngIf="signUpForm.get('email')?.errors?.['required']">
           Por favor ingrese un correo electronico
@@ -46,6 +47,7 @@
           Por favor ingrese un correo electronico valido
         </span>
       </div>
+
       <div class="input-group mb-3">
         <span class="input-group-text">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
@@ -60,7 +62,7 @@
           <input type="text" class="form-control" placeholder="Ingrese Código" formControlName="code">
           <label>Código</label>
         </div>
-        <button type="button" class="btn btn-primary mb-3 ms-3">Enviar</button>
+        <button type="submit" class="btn btn-primary mb-3 ms-3" value="1">Enviar</button>
 
       </div>      
       <div class="input-group mb-3">
@@ -103,7 +105,7 @@
         </span>
       </div>
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>
+        <button type="submit" class="btn btn-primary btn-lg"  value="2">Registrarse</button>
       </div>
     </form>
 
