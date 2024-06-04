@@ -1,104 +1,18 @@
-<app-header class="fixed-top"></app-header>
-<div class="container" style="margin-top: 80px;">
-  <!-- Sección para crear eventos -->
-  <section>
-    <h2>Crear Eventos</h2>
-    <!-- Formulario para crear eventos -->
-    <form>
-      <div class="mb-3">
-        <label for="titulo" class="form-label">Título:</label>
-        <input type="text" class="form-control" id="titulo" name="titulo">
-      </div>
-      
-      <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción:</label>
-        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
-      </div>
-      
-      <div class="row mb-3">
-        <div class="col">
-          <label for="fecha" class="form-label">Fecha:</label>
-          <input type="date" class="form-control" id="fecha" name="fecha">
-        </div>
-        <div class="col">
-          <label for="hora" class="form-label">Hora:</label>
-          <input type="time" class="form-control" id="hora" name="hora">
-        </div>
-      </div>
-      
-      <div class="mb-3">
-        <label for="ubicacion" class="form-label">Ubicación:</label>
-        <input type="text" class="form-control" id="ubicacion" name="ubicacion">
-      </div>
-      
-      <div class="mb-3">
-        <label for="categoria" class="form-label">Categoría:</label>
-        <select class="form-select" id="categoria" name="categoria">
-          <option value="concierto">Concierto</option>
-          <option value="feria">Feria</option>
-          <option value="deportivo">Deportivo</option>
-          <!-- Agrega más opciones de categoría según tus necesidades -->
-        </select>
-      </div>
-      
-      <button type="submit" class="btn btn-primary">Crear Evento</button>
-    </form>
-  </section>
-  
-  <!-- Sección para buscar eventos -->
-  <section id="buscar-eventos" class="mb-5">
-    <h2>Buscar Eventos</h2>
-    <form>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="nombre" class="form-label">Nombre:</label>
-          <input type="text" class="form-control" id="nombre" name="nombre">
-        </div>
-        <div class="col-md-6">
-          <label for="categoria" class="form-label">Categoría:</label>
-          <select class="form-select" id="categoria" name="categoria">
-            <option value="">Seleccionar categoría</option>
-            <option value="concierto">Concierto</option>
-            <option value="feria">Feria</option>
-            <option value="deportivo">Deportivo</option>
-            <!-- Agrega más opciones de categoría según necesites -->
-          </select>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="ubicacion" class="form-label">Ubicación:</label>
-          <input type="text" class="form-control" id="ubicacion" name="ubicacion">
-        </div>
-        <div class="col-md-6">
-          <label for="fecha" class="form-label">Fecha:</label>
-          <input type="date" class="form-control" id="fecha" name="fecha">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
-  </section>
-
-  
-  <!-- Sección para inscribirse a eventos -->
-  <section>
-    <h2>Inscribirse a Eventos</h2>
-    <!-- Lista de eventos disponibles para inscripción -->
-    <!-- Aquí puedes mostrar una lista de eventos con la opción de inscribirse -->
-  </section>
-  
-  <!-- Sección para gestionar eventos creados -->
-  <section>
-    <h2>Gestionar Eventos Creados</h2>
-    <!-- Lista de eventos creados por el usuario con opciones para editar o cancelar -->
-    <!-- Aquí puedes mostrar una lista de eventos creados por el usuario con opciones de edición y cancelación -->
-  </section>
-  
-  <!-- Sección para visualizar eventos inscritos -->
-  <section>
-    <h2>Eventos Inscritos</h2>
-    <!-- Lista de eventos a los que el usuario se ha inscrito -->
-    <!-- Aquí puedes mostrar una lista de eventos a los que el usuario se ha inscrito -->
-  </section>
-  
+<app-header></app-header>
+<div class="row">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h1 class="card-title">Titulo</h1>
+              <p class="card-text">Descripcion del evento</p>
+              <p class="card-text">Fecha</p>
+              <p class="card-text">Hora</p>
+              <p class="card-text">Ubicacion</p>
+              <p class="card-text">Categoria</p>
+              <a href="#" class="btn btn-primary">Editar</a>
+              <a href="#" class="btn btn-primary">Eliminar</a>
+            </div>
+          </div>
+    </div>
 </div>
