@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../interfaces/user';
+import { LoginResponse, User } from '../interfaces/user';
 import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -28,14 +28,28 @@ export class UserService {
     );
   }
 
-  login(user: User): Observable<string> {
+  login(user: User): Observable<LoginResponse> {
     console.log('Logging in with username:', user.username, 'and password:', user.password)
-    return this.http.post<string>(`${this.URL}users/login`, user).pipe(
+    return this.http.post<LoginResponse>(`${this.URL}users/login`, user).pipe(
       catchError((error) => {
         console.error('Error logging in:', error);
         return throwError(() => error);
       })
     );
+  }
+
+  loadUserId(): number {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      try {
+        return +JSON.parse(userString).id;
+      } catch (error) {
+        console.error('Error parsing user JSON:', error);
+        return 0; // Asignar 0 como valor predeterminado en caso de error
+      }
+    } else {
+      return 0; // Asignar 0 como valor predeterminado si no se encuentra ningún usuario en el almacenamiento local
+    }
   }
 
 }
