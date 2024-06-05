@@ -18,3 +18,8 @@ export interface LoginResponse {
   user: UserResponse;
 }
 
+export interface Recover{
+  password: String,
+  email: string
+}
+

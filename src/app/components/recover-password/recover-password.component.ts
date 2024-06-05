@@ -3,23 +3,24 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { EmailService } from '../../services/email.service';  
-import { User } from '../../interfaces/user';
+import { Recover } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { empty } from 'rxjs';
 
 var otpTemp = -1;
 var sent = false;
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'app-recover-password',
   standalone: true,
   imports: [CommonModule, RouterLink, ReactiveFormsModule],
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  templateUrl: './recover-password.component.html',
+  styleUrls: ['./recover-password.component.css']
 })
-export class SignUpComponent {
-  signUpForm: FormGroup;
+export class RecoverPassword {
+  recoverForm: FormGroup;
 
   constructor(
     private userService: UserService, 
@@ -27,8 +28,7 @@ export class SignUpComponent {
     private router: Router, 
     private toastr: ToastrService
   ) {
-    this.signUpForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+    this.recoverForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
       confirmPassword: new FormControl('', [Validators.required]),
@@ -37,13 +37,13 @@ export class SignUpComponent {
   }
 
   signupValidator(field: string): boolean {
-    const control = this.signUpForm.get(field);
+    const control = this.recoverForm.get(field);
     return !control?.valid && !control?.pristine;
   }
 
   sendOTP() {
 
-    const email = this.signUpForm.value.email;
+    const email = this.recoverForm.value.email;
     console.log(email);
     if (!email) {
       this.toastr.error('Por favor ingrese un correo electrónico válido.');
@@ -63,7 +63,7 @@ export class SignUpComponent {
     });
   }
 
-  signUp(event: any) {
+  recoverPassword(event: any) {
 
     console.log(event.submitter.value);
     if (event.submitter.value === '1'){
@@ -72,42 +72,49 @@ export class SignUpComponent {
       return;
     }
 
-
-    if (this.signUpForm.value.password !== this.signUpForm.value.confirmPassword) {
+    if (this.recoverForm.value.password !== this.recoverForm.value.confirmPassword) {
       this.toastr.error('Las contraseñas no coinciden');
       return;
-    } else if (this.signUpForm.invalid) {
+    } else if (this.recoverForm.invalid) {
       this.toastr.error('Completa todos los campos');
       return;
     }
 
-    if (otpTemp != this.signUpForm.value.code || sent === false) {
-      console.log(this.signUpForm.value.code);
+
+    if (this.recoverForm.value.password !== this.recoverForm.value.confirmPassword) {
+      this.toastr.error('Las contraseñas no coinciden');
+      return;
+    } else if (this.recoverForm.invalid) {
+      this.toastr.error('Completa todos los campos');
+      return;
+    }
+
+    if (otpTemp != this.recoverForm.value.code || sent === false) {
+      console.log(this.recoverForm.value.code);
       if(sent === false) this.toastr.error('Solicita el numero otp');
       else this.toastr.error('OTP es invalido');
       return;
     }
 
-    const user: User = {
-      username: this.signUpForm.value.username ?? '',
-      password: this.signUpForm.value.password ?? '',
-      email: this.signUpForm.value.email ?? ''
+    const recoverPass: Recover = {
+      password: this.recoverForm.value.password ?? '',
+      email: this.recoverForm.value.email ?? ''
     }
 
-    this.userService.signUp(user)
+    this.userService.recoverPasswordByEmail(recoverPass)
       .subscribe({
         next: (response: any) => {
-          console.log('Sign up successful:', response);
-          this.toastr.success('Sign up successful. Please log in.', 'Success!');
+          console.log('Contraseña cambiada:', response);
+          this.toastr.success('Contraseña cambiada por favor inicie sesion.', 'Success!');
           this.router.navigate(['/login']);
         },
         error: (e: HttpErrorResponse) => {
           console.error('Error signing up:', e);
           e.error.message
             ? this.toastr.error(e.error.message, 'Error')
-            : this.toastr.error('An error occurred while signing up. Please try again.', 'Error');
+            : this.toastr.error('Ha ocurrido un error.', 'Error');
         },
-        complete: () => console.log('Sign up complete')
+        complete: () => console.log('Contraseña cambiada')
       });
   }
 }
