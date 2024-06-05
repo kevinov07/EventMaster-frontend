@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { LoginResponse, User } from '../interfaces/user';
+import { LoginResponse, User, Recover } from '../interfaces/user';
 import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -50,6 +50,15 @@ export class UserService {
     } else {
       return 0; // Asignar 0 como valor predeterminado si no se encuentra ningún usuario en el almacenamiento local
     }
+  }
+
+  recoverPasswordByEmail(recover: Recover) {
+    return this.http.post<any>(`${this.URL}users/recover`, recover).pipe(
+      catchError((error) => {
+        console.error('Error recovering password:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
 }
