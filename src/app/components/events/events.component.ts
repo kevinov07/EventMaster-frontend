@@ -19,7 +19,6 @@ import { forkJoin } from 'rxjs';
 export class EventsComponent implements OnInit {
   searchForm: FormGroup;
   events: AppEvent[] = [];
-  selectedEvent: AppEvent | null = null;
   userId: number;
 
   constructor(
@@ -110,9 +109,5 @@ export class EventsComponent implements OnInit {
         this.toastr.error('Error leaving event. Please try again later.', 'Error');
       }
     });
-  }
-
-  setSelectedEvent(event: AppEvent): void {
-    this.selectedEvent = event;
   }
 }
