@@ -10,16 +10,14 @@ import { AppEvent, EventFilters } from '../interfaces/event';
 export class EventService {
 
   private URL: string
-  private myAPIUrl: string
 
   constructor(private http: HttpClient) {
     this.URL = environment.endpoint
-    this.myAPIUrl = 'event/create'
   }
 
   createEvent(event: AppEvent): Observable<any> {
     console.log('Creating event:', event.title, 'on:', event.date, 'at:', event.location, 'with description:', event.description)
-    return this.http.post(`${this.URL}${this.myAPIUrl}`, event).pipe(
+    return this.http.post(`${this.URL}event/create`, event).pipe(
       catchError((error) => {
         console.error('Error creating event:', error);
         return throwError(() => error);
@@ -27,9 +25,9 @@ export class EventService {
     );
   }
 
-  getEventByUser(userId: number): Observable<AppEvent[]> {
-    console.log('Fetching events by user:', userId)
-    return this.http.get<AppEvent[]>(`${this.URL}event/created/${userId}`).pipe(
+  getEventByUser(user_id: number): Observable<AppEvent[]> {
+    console.log('Fetching events by user:', user_id)
+    return this.http.get<AppEvent[]>(`${this.URL}event/created/${user_id}`).pipe(
       catchError((error) => {
         console.error('Error fetching events:', error);
         return throwError(() => error);
@@ -37,7 +35,7 @@ export class EventService {
     );
   }
 
-  searchEvents(filters?: EventFilters): Observable<AppEvent[]> {
+  searchEvents(user_id: number, filters?: EventFilters): Observable<AppEvent[]> {
     let params = new HttpParams();
 
     // Verifica si el objeto filters está definido y si tiene valores
@@ -51,10 +49,42 @@ export class EventService {
       }
     }
 
+    params = params.append('userId', user_id.toString());
+
     console.log('Searching events with filters:', filters)
     return this.http.get<AppEvent[]>(`${this.URL}event/get-events`, { params }).pipe(
       catchError((error) => {
+        console.error('Error fetching events.....:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  getEventsByUserSubscription(user_id: number): Observable<AppEvent[]> {
+    console.log('Fetching events by user:', user_id)
+    return this.http.get<AppEvent[]>(`${this.URL}event/suscriptions/${user_id}`).pipe(
+      catchError((error) => {
         console.error('Error fetching events:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  joinEvent(user_id: number, event_id: number): Observable<any> {
+    console.log('Attending event:', event_id)
+    return this.http.post(`${this.URL}registration/create`, {user_id, event_id}).pipe(
+      catchError((error) => {
+        console.error('Error attending event:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  leaveEvent(user_id: number, event_id: number): Observable<any> {
+    console.log('Leaving event:', event_id)
+    return this.http.delete(`${this.URL}registration/delete-by-user`, {body:{user_id, event_id}}).pipe(
+      catchError((error) => {
+        console.error('Error leaving event:', error);
         return throwError(() => error);
       })
     );

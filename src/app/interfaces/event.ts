@@ -7,6 +7,7 @@ export interface AppEvent {
     category: string;
     time: string;
     userId: number;
+    isAttending?: boolean;
 }
 
 export interface EventFilters {
