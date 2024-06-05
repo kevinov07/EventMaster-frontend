@@ -6,11 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import { AppEvent } from '../../interfaces/event';
 import { HeaderComponent } from '../header/header.component';
 import { UserService } from '../../services/user.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-my-events',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent],
+  imports: [CommonModule, RouterModule, HeaderComponent, ReactiveFormsModule],
   templateUrl: './my-events.component.html',
   styleUrl: './my-events.component.css'
 })
@@ -18,6 +19,8 @@ export class MyEventsComponent implements OnInit {
   createdEvents: AppEvent[] = [];
   userId: number;
   attendingEvents: AppEvent[] = [];
+  editingEventId: number | null = null;
+  editEventForm: FormGroup;
   
 
   constructor(
@@ -26,6 +29,14 @@ export class MyEventsComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
   ) {
+    this.editEventForm = new FormGroup({
+      title: new FormControl(''),
+      category: new FormControl(''),
+      date: new FormControl(''),
+      time: new FormControl(''),
+      location: new FormControl(''),
+      description: new FormControl('')
+    });
     this.userId = 0;
   }
 
@@ -50,7 +61,7 @@ export class MyEventsComponent implements OnInit {
   }
 
   loadAttendingEvents(): void {
-    this.eventService.getEventByUser(this.userId).subscribe({
+    this.eventService.getEventsByUserSubscription(this.userId).subscribe({
       next: (events) => {
         this.attendingEvents = events;
       },
@@ -61,9 +72,34 @@ export class MyEventsComponent implements OnInit {
     });
   } 
 
-  
+  editEvent(event: AppEvent): void {
+    this.editingEventId = event.id!;
+  }
 
-  goToEvent(eventId: number): void {
-    //this.router.navigate(['/event', eventId]);
+  leaveEvent(userId: number, eventId: number): void {
+    this.eventService.leaveEvent(userId, eventId).subscribe({
+      next: () => {
+        this.toastr.success('You have left the event', 'Success');
+        this.loadAttendingEvents();
+        this.loadUserEvents();
+      },
+      error: (err) => {
+        console.error('Error leaving event:', err);
+        this.toastr.error('Error leaving event. Please try again later.', 'Error');
+      }
+    });
+  }
+
+  deleteEvent(eventId: number): void {
+    this.eventService.deleteEvent(eventId!).subscribe({
+      next: () => {
+        this.toastr.success('Event deleted successfully', 'Success');
+        this.loadUserEvents();
+      },
+      error: (err) => {
+        console.error('Error deleting event:', err);
+        this.toastr.error('Error deleting event. Please try again later.', 'Error');
+      }
+    });
   }
 }

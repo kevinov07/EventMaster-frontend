@@ -89,4 +89,14 @@ export class EventService {
       })
     );
   }
+
+  deleteEvent(event_id: number): Observable<any> {
+    console.log('Deleting event:', event_id)
+    return this.http.delete(`${this.URL}event/delete/${event_id}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting event:', error);
+        return throwError(() => error);
+      })
+    );
+  }
 }
