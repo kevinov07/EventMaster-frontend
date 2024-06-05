@@ -1,6 +1,6 @@
 <app-header class="fixed-top"></app-header>
 
-<section class="container" style="margin-top: 80px;">
+<section class="container" style="margin-top: 100px; margin-left:20px;">
   <h2>Buscar y Filtrar Eventos</h2>
 
   <!-- Formulario de búsqueda y filtros -->
@@ -32,7 +32,7 @@
     @if (events.length === 0) {
       <div>No se encontraron eventos.</div>
     }@else {
-      <ul class="list-group">
+      <ul class="list-group list-group-horizontal">
         @for (event of events; track event.id) {
           <li class="list-group-item">
             <h5>{{ event.title }}</h5>

@@ -1,31 +1,31 @@
 <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
   <div class="container-fluid">
     <!-- <img class="logo" src="assets/images/login-logo.png" alt="EventMaster"> -->
-    <a class="navbar-brand" routerLink="/dashboard">EventMaster</a>
+    <a class="navbar-brand" routerLink="/dashboard">
+      <img src="assets/images/login-logo.png" width="60px" >
+      EventMaster
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto me-0 mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/dashboard">Inicio</a>
+          <a class="nav-link fs-5 text" routerLink="/dashboard">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/events">Eventos</a>
+          <a class="nav-link fs-5 text" routerLink="/events">Eventos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" href="#">Venues</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fs-5 " routerLink="/my-events">Mis eventos</a>
+          <a class="nav-link fs-5 text" routerLink="/my-events">Mis eventos</a>
         </li>
         <li class="nav-item">
           <div class="me-2">
-            <button type="button" class="btn btn-lg btn-outline-primary" routerLink="/events/create">Crear evento</button>
+            <button type="button" class="btn btn-lg bcreate" routerLink="/events/create">Crear evento</button>
           </div>
         </li>
         </ul>
-      <button class="btn btn-outline-danger btn-lg btn-custom" (click)="logout()" type="button">Cerrar sesion</button>
+      <button class="btn  btn-lg btn-custom bclose" (click)="logout()" type="button">Cerrar sesion</button>
     </div>
   </div>
 </nav>
