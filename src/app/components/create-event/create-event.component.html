@@ -3,7 +3,7 @@
 <section class="container" style="margin-top: 80px;">
   <h2>Crear Eventos</h2>
   <!-- Formulario para crear eventos -->
-  <form [formGroup] = "eventsForm" (submit)="CreateEvent()">
+  <form [formGroup]="eventsForm" (submit)="CreateEvent()">
     <div class="mb-3">
       <label for="titulo" class="form-label">Título:</label>
       <input type="text" class="form-control" id="titulo" formControlName="title">
@@ -32,7 +32,9 @@
     
     <div class="mb-3">
       <label for="categoria" class="form-label">Categoría:</label>
-      <input type="text" class="form-control" id="categoria" formControlName="category">
+      <select class="form-control" id="categoria" formControlName="category">
+        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+      </select>
     </div>
     
     <button type="submit" class="btn btn-primary">Crear Evento</button>
