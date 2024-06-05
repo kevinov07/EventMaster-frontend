@@ -36,3 +36,11 @@
     font-size: large;
     transition: 0.2s;
 }
+
+.text{
+    color: white;
+}
+
+.text:hover{
+    text-decoration: underline;
+}
