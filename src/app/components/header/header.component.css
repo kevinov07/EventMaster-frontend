@@ -11,3 +11,28 @@
     width: 50px;
     height: 50px;
   }
+
+.bcreate{
+    background-color: white;
+    color: #7120af;
+    
+}
+
+.bcreate:hover{
+    background-color: #7120af;
+    color: white;
+    font-size: large;
+    transition: 0.2s;
+}
+
+.bclose{
+    background-color: white;
+    color: #7120af;
+}
+
+.bclose:hover{
+    background-color: #7120af;
+    color: white;
+    font-size: large;
+    transition: 0.2s;
+}
