@@ -99,4 +99,14 @@ export class EventService {
       })
     );
   }
+
+  getMainEvents(): Observable<AppEvent[]> {
+    console.log('Fetching main events')
+    return this.http.get<AppEvent[]>(`${this.URL}event/main`).pipe(
+      catchError((error) => {
+        console.error('Error fetching main events:', error);
+        return throwError(() => error);
+      })
+    );
+  }
 }
