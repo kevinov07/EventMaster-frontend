@@ -43,7 +43,7 @@
             @if (event.isAttending) {
               <div class="d-flex align-items-center">
                 <span class="badge bg-success fs-5"> ✔ Inscrito <i class="bi bi-check-circle"></i></span>
-                <button class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#confirmationModal" (click)="setSelectedEvent(event)">Cancelar Inscripción</button>
+                <button class="btn btn-warning ms-3" (click)="leaveEvent(userId, event.id!)">Cancelar Inscripción</button>
               </div>
             }@else {
               <button class="btn btn-primary" (click)="joinEvent(userId, event.id!)">Inscribirse</button>
@@ -51,28 +51,6 @@
           </li>
         }
       </ul>
-      <!-- Modal de confirmación -->
-      <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="confirmationModalLabel">Confirmar acción</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ¿Estás seguro de que deseas cancelar tu inscripcion al evento {{selectedEvent?.title}}?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" id="confirmActionBtn" (click)="leaveEvent(userId, selectedEvent?.id || 0)" data-dismiss="modal">Confirmar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
     }
   </div>
 </section>
