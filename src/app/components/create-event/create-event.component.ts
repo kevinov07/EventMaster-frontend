@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators  } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AppEvent } from '../../interfaces/event';
 import { UserService } from '../../services/user.service';
+import { CategoryService } from '../../services/categories.service';
+import { category } from '../../interfaces/categories';
 
 @Component({
   selector: 'app-create-event',
@@ -17,12 +19,14 @@ import { UserService } from '../../services/user.service';
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.css'
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
   eventsForm: FormGroup;
   userId: number;
+  categories: category[] = []; // Añade una propiedad para las categorías
 
   constructor(
     private eventService: EventService,
+    private categoryService: CategoryService, // Inyecta el servicio EmailService
     private router: Router, 
     private toastr: ToastrService,
     private userService: UserService
@@ -39,18 +43,34 @@ export class CreateEventComponent {
     this.userId = this.userService.loadUserId();
   }
 
+  ngOnInit(): void {
+    this.loadCategories(); // Carga las categorías cuando se inicializa el componente
+  }
+
+  loadCategories() {
+    this.categoryService.getAllEmails().subscribe(
+      (data: category[]) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error('Error fetching categories', error);
+        this.toastr.error('Error loading categories. Please try again.', 'Error');
+      }
+    );
+  }
+
   CreateEvent() {
     if (this.eventsForm.invalid) {
       this.toastr.error('Please fill out all fields correctly.');
       return;
     }
 
-
     const event: AppEvent = {
       ...this.eventsForm.value,
+      category: this.getCategoryId(this.eventsForm.value.category),
       user_id: this.userId
     }
-    console.log(event)
+
     this.eventService.createEvent(event)
       .subscribe({
         next: (response) => {
@@ -67,5 +87,8 @@ export class CreateEventComponent {
       });
   }
 
+  private getCategoryId(categoryName: string): number {
+    const category = this.categories.find(cat => cat.name === categoryName);
+    return category ? category.id : 0;
+  }
 }
-
