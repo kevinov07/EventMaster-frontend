@@ -11,43 +11,20 @@
     <h2 style="color: white;">Eventos Principales</h2>
     <div class="container p-3">
       <div class="row">
-        <div class="col">
-          <div class="card" style="width: 350px; height: 400px;">
-            <div class="card-body m-4">
-              <h2 class="card-title p-4">Titulo Evento</h2>
-              <p class="card-text">Descripcion</p>
-              <h4>Fecha</h4>
-              <h4>Ubicacion</h4>
-              <h4>Categoria</h4>
-              <a href="/events" class="btn btn-lg m-4">Ver más</a>
+        @for (event of events; track event.id) {
+          <div class="col">
+            <div class="card" style="width: 350px; height: 400px;">
+              <div class="card-body m-4">
+                <h2 class="card-title p-4">{{event.title}}</h2>
+                <p class="card-text">{{event.description}}</p>
+                <h4>Fecha y Hora: {{event.date}}</h4>
+                <h4>Ubicacion: {{event.location}}</h4>
+                <h4>Categoria: {{event.category}}</h4>
+                  <a href="/events" class="btn btn-lg m-4">Ver más</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 350px; height: 400px;">
-            <div class="card-body m-4">
-              <h2 class="card-title p-4">Titulo Evento</h2>
-              <p class="card-text">Descripcion</p>
-              <h4>Fecha</h4>
-              <h4>Ubicacion</h4>
-              <h4>Categoria</h4>
-              <a href="/events" class="btn btn-lg m-4">Ver más</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width: 350px; height: 400px;">
-            <div class="card-body m-4">
-              <h2 class="card-title p-4">Titulo Evento</h2>
-              <p class="card-text">Descripcion</p>
-              <h4>Fecha</h4>
-              <h4>Ubicacion</h4>
-              <h4>Categoria</h4>
-              <a href="/events" class="btn btn-lg m-4">Ver más</a>
-            </div>
-          </div>
-        </div>
+        }
       </div>
-
     </div>
   </section>
