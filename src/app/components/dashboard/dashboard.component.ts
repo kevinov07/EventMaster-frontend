@@ -42,13 +42,13 @@ export class DashboardComponent {
     });
   }
 
-  // events1 = [
-  //   { id: 1, title: 'The Chainsmokers', date: new Date('2024-06-10'), location: 'Madison Square Garden', time: '8:30 pm', description: 'a good event', category: 'Music'},
-  //   { id: 2, title: 'Tame Impala', date: new Date('2024-07-09'), location: 'Barclays Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
-  //   { id: 3, title: 'Hans Zimmer Live', date: new Date('2022-08-21'), location: 'Radio City Music Hall', time: '8:30 pm', description: 'a good event', category: 'Music'}, 
-  //   { id: 4, title: 'The Weeknd', date: new Date('2024-08-09') , location: 'Prudential Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
-  //   { id: 5, title: 'Adele', date: new Date('2024-09-02'),  location: 'MetLife Stadium', time: '8:30 pm', description: 'a good event', category: 'Music'},
-  //   { id: 6, title: 'Billie Eilish', date: new Date('2024-10-09'), location: 'Barclays Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
+  events1 = [
+    { id: 1, title: 'The Chainsmokers', date: new Date('2024-06-10'), location: 'Madison Square Garden', time: '8:30 pm', description: 'a good event', category: 'Music'},
+    { id: 2, title: 'Tame Impala', date: new Date('2024-07-09'), location: 'Barclays Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
+    { id: 3, title: 'Hans Zimmer Live', date: new Date('2022-08-21'), location: 'Radio City Music Hall', time: '8:30 pm', description: 'a good event', category: 'Music'}, 
+    // { id: 4, title: 'The Weeknd', date: new Date('2024-08-09') , location: 'Prudential Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
+    // { id: 5, title: 'Adele', date: new Date('2024-09-02'),  location: 'MetLife Stadium', time: '8:30 pm', description: 'a good event', category: 'Music'},
+    // { id: 6, title: 'Billie Eilish', date: new Date('2024-10-09'), location: 'Barclays Center', time: '8:30 pm', description: 'a good event', category: 'Music'},
     
-  // ];
+  ];
 }

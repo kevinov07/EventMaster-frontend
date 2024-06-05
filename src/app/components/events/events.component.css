@@ -1,0 +1,43 @@
+.container-fluid{
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-buscar{
+    color: #7120af;
+    background-color: white;
+}
+
+.btn-buscar:hover{
+    font-size: small;
+    transition: 0.2s;
+}
+
+.card{
+    border-radius: 40px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cancel{
+    background-color: #7120af;
+    color: white;
+}
+
+.btn-cancel:hover{
+    font-size: smaller;
+    transition: 0.2s;
+    background-color: white;
+    color: #7120af;
+}
+
+.btn-join{
+    background-color: #7120af;
+    color: white;
+}
+
+.btn-join:hover{
+    font-size: smaller;
+    transition: 0.2s;
+    background-color: white;
+    color: #7120af;
+}
